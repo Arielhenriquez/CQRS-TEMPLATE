@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
+using RBACV2.Application.Common.Exceptions;
 using RBACV2.Application.Common.Interfaces.Repositories;
 using RBACV2.Application.UsersEntity.Commands;
 using RBACV2.Application.UsersEntity.Dtos;
 using RBACV2.Domain.Entities.UserEntity;
 using RBACV2.Domain.Enums;
-using System.ComponentModel.DataAnnotations;
 
 namespace RBACV2.Application.UsersEntity.Handlers.Commands
 {
@@ -26,7 +26,7 @@ namespace RBACV2.Application.UsersEntity.Handlers.Commands
                 .Any(x => x.FirstName == request.FirstName);
 
             if (duplicatedUserName)
-                throw new ValidationException($"El nombre de usuario: {request.FirstName} ya existe");
+                throw new BadRequestException($"El nombre de usuario: {request.FirstName} ya existe");
 
             if (request.ActionType != ActionsTypes.Create)
                 throw new ArgumentException($"Action Type '{request.ActionType}' is not supported, you can only Create.");

@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using RBACV2.Application.Common.BaseResponse;
+using RBACV2.Application.Common.Exceptions;
 using RBACV2.Application.Common.PaginationQuery;
 using RBACV2.Application.UsersEntity.Commands;
 using RBACV2.Application.UsersEntity.Queries;
-using RBACV2.Infrastructure.Services.PermissionsHandler;
+using RBACV2.Domain.BaseResponse;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace RBACV2.API.Controllers.User
@@ -36,16 +36,9 @@ namespace RBACV2.API.Controllers.User
             Summary = "Gets users in the database by id")]
         public async Task<IActionResult> FindById([FromRoute] Guid id)
         {
-            try
-            {
-                var query = new GetUserByIdQuery { Id = id };
-                var result = await Mediator.Send(query);
-                return Ok(BaseResponse.Ok(result));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(BaseResponse.BadRequest(ex.Message));
-            }
+            var query = new GetUserByIdQuery { Id = id };
+            var result = await Mediator.Send(query);
+            return Ok(BaseResponse.Ok(result));
         }
 
         //[Permission("users.write")]
@@ -54,16 +47,8 @@ namespace RBACV2.API.Controllers.User
            Summary = "Creates a new user")]
         public async Task<IActionResult> Post([FromBody] CreateUserCommand command)
         {
-            try
-            {
-                var result = await Mediator.Send(command);
-
-                return CreatedAtRoute(new { id = result.Id }, BaseResponse.Created(result));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(BaseResponse.BadRequest(ex.Message));
-            }
+            var result = await Mediator.Send(command);
+            return CreatedAtRoute(new { id = result.Id }, BaseResponse.Created(result));
         }
 
         //[Permission("users.write")]
@@ -78,6 +63,8 @@ namespace RBACV2.API.Controllers.User
                 var result = await Mediator.Send(command);
                 return Ok(BaseResponse.Updated(result));
             }
+            catch (NotFoundException) { throw; }
+
             catch (Exception ex)
             {
                 return BadRequest(BaseResponse.BadRequest(ex.Message));
@@ -90,19 +77,13 @@ namespace RBACV2.API.Controllers.User
             Summary = "Deletes user")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
         {
-            try
+            var command = new DeleteUserCommand(id)
             {
-                var command = new DeleteUserCommand(id);
-                command.Id = id;
+                Id = id
+            };
 
-                var result = await Mediator.Send(command);
-                return Ok(BaseResponse.Deleted(result));
-
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(BaseResponse.BadRequest(ex.Message));
-            }
+            var result = await Mediator.Send(command);
+            return Ok(BaseResponse.Deleted(result));
         }
     }
 }

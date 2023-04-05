@@ -4,11 +4,11 @@ using System.Text.RegularExpressions;
 
 namespace RBACV2.Application.UsersEntity.Validators
 {
-    public class CreateUserValidator : AbstractValidator<CreateUserCommand>
+    public class UpdateUserValidator : AbstractValidator<UpdateUserCommand>
     {
         const string expression = "[\\d$-/:-?{-~!\"^_`\\[\\]@#]+";
         readonly TimeSpan regexTimeout = TimeSpan.FromMinutes(5);
-        public CreateUserValidator()
+        public UpdateUserValidator()
         {
             RuleFor(x => x.FirstName)
                 .NotEmpty()

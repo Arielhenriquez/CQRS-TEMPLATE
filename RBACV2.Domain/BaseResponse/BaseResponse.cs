@@ -1,7 +1,7 @@
 ﻿using RBACV2.Domain.Constants;
 using System.Net;
 
-namespace RBACV2.Application.Common.BaseResponse
+namespace RBACV2.Domain.BaseResponse
 {
     public partial class BaseResponse
     {
@@ -27,9 +27,13 @@ namespace RBACV2.Application.Common.BaseResponse
             Data = data;
         }
 
-        public static BaseResponse BadRequest(object data)
+        public static BaseResponse BadRequest(string errorMessage)
         {
-            return new BaseResponse(HttpStatusCode.BadRequest, MessageResponse.ExceptionMessage, data);
+            return new BaseResponse(HttpStatusCode.BadRequest, MessageResponse.ExceptionMessage, errorMessage);
+        }
+        public static BaseResponse NotFound(string errorMessage)
+        {
+            return new BaseResponse(HttpStatusCode.NotFound, MessageResponse.NotFoundMessage, errorMessage);
         }
 
         public static BaseResponse Ok(object data)

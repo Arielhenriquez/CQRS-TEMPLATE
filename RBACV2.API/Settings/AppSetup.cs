@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
+using RBACV2.API.ExceptionFilters;
 using RBACV2.Application;
 using RBACV2.Application.Common.Settings;
 using RBACV2.Infrastructure;
@@ -26,8 +27,10 @@ namespace RBACV2.API.Settings
         {
             services.Configure<AzureAdClientSettings>(Configuration.GetSection("AzureAdClientSettings"));
 
-            services.AddControllers().AddJsonOptions(x =>
-                    x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(typeof(CustomExceptionFilter));
+            }).AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RBACV2.Application.Common.Exceptions;
 using RBACV2.Application.Common.Interfaces.Abstract;
 using RBACV2.Application.Common.Interfaces.Repositories;
 using RBACV2.Domain.Base;
@@ -50,8 +51,7 @@ namespace RBACV2.Infrastructure.Persistence.Repositories
         {
             var entity = await Query().Where(x => x.Id.Equals(id)).FirstOrDefaultAsync();
 
-            if (entity == null)
-                throw new ArgumentException($"Object with id ('{id}') doesn't exists");
+            if (entity is null) throw new NotFoundException(typeof(TEntity).Name, id);
 
             return entity;
         }

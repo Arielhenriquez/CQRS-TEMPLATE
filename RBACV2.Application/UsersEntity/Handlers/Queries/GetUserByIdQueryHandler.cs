@@ -19,17 +19,8 @@ namespace RBACV2.Application.UsersEntity.Handlers.Queries
         }
         public async Task<GetUserByIdDto> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
-            var entity = await _userRepository.Query()
-                 .Include(x => x.Application)
-                 .Include(x => x.Role)
-                 .Where(x => x.Id == request.Id)
-                 .FirstAsync(cancellationToken);
-
-            if (entity == null) throw new ArgumentException($"User with id {request.Id} was not found");
-
-            var dto = _mapper.Map<GetUserByIdDto>(entity);
-
-            return dto;
+            var user = await _userRepository.Get(request.Id);
+            return _mapper.Map<GetUserByIdDto>(user);
         }
     }
 }

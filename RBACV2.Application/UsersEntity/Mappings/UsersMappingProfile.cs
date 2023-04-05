@@ -11,15 +11,15 @@ namespace RBACV2.Application.UsersEntity.Mappings
         public UsersMappingProfile()
         {
             CreateMap<UserPasswordProfile, PasswordProfile>().ReverseMap();
-
+            CreateMap<GetUsersDto, Users>().ReverseMap();
+            // CreateMap<GetUserByIdDto, Users>().ReverseMap();
             CreateMap<Users, UserResponseDto>().ReverseMap();
             CreateMap<CreateUserCommand, Users>().ReverseMap();
             CreateMap<UpdateUserCommand, Users>().ReverseMap();
 
             //CreateMap<AzureADUserEntity, AzureADUserRoleResponseDto>();
             //CreateMap<AzureADUserRoleResponseDto, AzureADUserEntity>();
-            CreateMap<GetUsersDto, Users>().ReverseMap();
-            CreateMap<GetUserByIdDto, Users>().ReverseMap();
+
 
             //CreateMap<AzureADUserDto, RoleDto>().ReverseMap();
         }
