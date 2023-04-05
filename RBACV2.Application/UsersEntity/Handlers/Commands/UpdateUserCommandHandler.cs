@@ -12,13 +12,11 @@ namespace RBACV2.Application.UsersEntity.Handlers.Commands
 {
     public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, UserResponseDto>
     {
-        private readonly IAzureADUserProvider _azureProvider;
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
 
-        public UpdateUserCommandHandler(IAzureADUserProvider azureProvider, IUserRepository userRepository, IMapper mapper)
+        public UpdateUserCommandHandler(IUserRepository userRepository, IMapper mapper)
         {
-            _azureProvider = azureProvider;
             _userRepository = userRepository;
             _mapper = mapper;
         }
@@ -31,12 +29,6 @@ namespace RBACV2.Application.UsersEntity.Handlers.Commands
             var user = _mapper.Map<Users>(request);
             _mapper.Map(request, user);
             var result = await _userRepository.Update(user);
-
-            if (!string.IsNullOrEmpty(result.UserOid))
-            {
-                var userAd = _mapper.Map<User>(result);
-                await _azureProvider.Update(result.UserOid, userAd);
-            }
 
             var dto = _mapper.Map<UserResponseDto>(result);
             return dto;

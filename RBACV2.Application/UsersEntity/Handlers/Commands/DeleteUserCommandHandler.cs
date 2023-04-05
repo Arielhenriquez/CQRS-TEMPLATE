@@ -9,30 +9,21 @@ namespace RBACV2.Application.UsersEntity.Handlers.Commands
 {
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, UserResponseDto>
     {
-
-  
-    private readonly IAzureADUserProvider _azureProvider;
-    private readonly IUserRepository _userRepository;
-    private readonly IMapper _mapper;
-    public DeleteUserCommandHandler(IAzureADUserProvider azureProvider, IUserRepository userRepository, IMapper mapper)
-    {
-        _azureProvider = azureProvider;
-        _userRepository = userRepository;
-        _mapper = mapper;
-    }
-
-    public async Task<UserResponseDto> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
-    {
-        var result = await _userRepository.Delete(request.Id);
-
-        if (!string.IsNullOrEmpty(result.UserOid))
+        private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
+        public DeleteUserCommandHandler(IUserRepository userRepository, IMapper mapper)
         {
-            await _azureProvider.Delete(result.UserOid);
+            _userRepository = userRepository;
+            _mapper = mapper;
         }
 
-        var dto = _mapper.Map<UserResponseDto>(result);
+        public async Task<UserResponseDto> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        {
+            var result = await _userRepository.Delete(request.Id);
 
-        return dto;
-    }
+            var dto = _mapper.Map<UserResponseDto>(result);
+
+            return dto;
+        }
     }
 }

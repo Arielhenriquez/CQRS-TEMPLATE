@@ -1,5 +1,4 @@
-﻿using Azure.Identity;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
@@ -25,11 +24,6 @@ namespace RBACV2.API.Settings
         }
         public void RegisterServices(IServiceCollection services)
         {
-            Configuration.AddAzureKeyVault(new Uri($"https://{Configuration["KeyVault:Vault"]}.vault.azure.net/"),
-                new ClientSecretCredential(Configuration["AzureAd:TenantId"],
-            Configuration["KeyVault:AppId"],
-            Configuration["KeyVault:ClientSecret"]));
-
             services.Configure<AzureAdClientSettings>(Configuration.GetSection("AzureAdClientSettings"));
 
             services.AddControllers().AddJsonOptions(x =>
@@ -38,7 +32,6 @@ namespace RBACV2.API.Settings
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
 
-            services.AddMemoryCache();
             services.AddScoped<IAuthorizationHandler, PermissionHandler>();
             services.AddSingleton<IAuthorizationPolicyProvider, PermissionPolicyProvider>();
             services.AddHttpContextAccessor();

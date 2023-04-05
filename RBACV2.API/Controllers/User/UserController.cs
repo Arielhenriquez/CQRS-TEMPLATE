@@ -44,7 +44,7 @@ namespace RBACV2.API.Controllers.User
             }
             catch (Exception ex)
             {
-                 return BadRequest(BaseResponse.BadRequest(ex.Message));
+                return BadRequest(BaseResponse.BadRequest(ex.Message));
             }
         }
 
@@ -58,7 +58,7 @@ namespace RBACV2.API.Controllers.User
             {
                 var result = await Mediator.Send(command);
 
-                return Ok(BaseResponse.Created(result));
+                return CreatedAtRoute(new { id = result.Id }, BaseResponse.Created(result));
             }
             catch (Exception ex)
             {
