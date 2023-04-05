@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using RBACV2.Application.Common.Exceptions;
 using RBACV2.Application.Common.PaginationQuery;
 using RBACV2.Application.UsersEntity.Commands;
 using RBACV2.Application.UsersEntity.Queries;
 using RBACV2.Domain.BaseResponse;
+using RBACV2.Infrastructure.Services.PermissionsHandler;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace RBACV2.API.Controllers.User
@@ -12,7 +14,8 @@ namespace RBACV2.API.Controllers.User
     [ApiController]
     public class UserController : BaseController
     {
-        //[Permission("users.read")]
+        //[Permission("users.read")]+
+        [Authorize]
         [HttpGet]
         [SwaggerOperation(
             Summary = "Gets users in the database")]

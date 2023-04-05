@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using RBACV2.API.ExceptionFilters;
+using RBACV2.API.Middlewares;
 using RBACV2.Application;
 using RBACV2.Application.Common.Settings;
 using RBACV2.Infrastructure;
@@ -82,6 +83,7 @@ namespace RBACV2.API.Settings
         }
         public void SetupMiddlewares(WebApplication app)
         {
+            app.UseMiddleware<UnauthorizedMiddleware>();
             app.UseCors("DevPolicy");
 
         }

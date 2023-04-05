@@ -27,18 +27,19 @@ namespace RBACV2.Domain.BaseResponse
             Data = data;
         }
 
+        public static BaseResponse Ok(object data)
+        {
+            return new BaseResponse(HttpStatusCode.OK, MessageResponse.OkMessage, data);
+        }
+
         public static BaseResponse BadRequest(string errorMessage)
         {
             return new BaseResponse(HttpStatusCode.BadRequest, MessageResponse.ExceptionMessage, errorMessage);
         }
+
         public static BaseResponse NotFound(string errorMessage)
         {
             return new BaseResponse(HttpStatusCode.NotFound, MessageResponse.NotFoundMessage, errorMessage);
-        }
-
-        public static BaseResponse Ok(object data)
-        {
-            return new BaseResponse(HttpStatusCode.OK, MessageResponse.OkMessage, data);
         }
 
         public static BaseResponse Created(object data)
@@ -53,6 +54,11 @@ namespace RBACV2.Domain.BaseResponse
         public static BaseResponse Deleted(object data)
         {
             return new BaseResponse(HttpStatusCode.NoContent, MessageResponse.EliminatedMessage, data);
+        }
+
+        public static BaseResponse Unauthorized(string errorMessage)
+        {
+            return new BaseResponse(HttpStatusCode.Unauthorized, MessageResponse.UnauthorizedMessage, errorMessage);
         }
     }
 }
