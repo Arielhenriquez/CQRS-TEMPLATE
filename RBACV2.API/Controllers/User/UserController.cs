@@ -14,8 +14,7 @@ namespace RBACV2.API.Controllers.User
     [ApiController]
     public class UserController : BaseController
     {
-        //[Permission("users.read")]+
-        [Authorize]
+        [Permission("users.read")]
         [HttpGet]
         [SwaggerOperation(
             Summary = "Gets users in the database")]

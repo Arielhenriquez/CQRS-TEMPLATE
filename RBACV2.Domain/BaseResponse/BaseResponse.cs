@@ -60,5 +60,10 @@ namespace RBACV2.Domain.BaseResponse
         {
             return new BaseResponse(HttpStatusCode.Unauthorized, MessageResponse.UnauthorizedMessage, errorMessage);
         }
+
+        public static BaseResponse Forbidden(string errorMessage)
+        {
+            return new BaseResponse(HttpStatusCode.Forbidden, MessageResponse.ForbiddenMessage, errorMessage);
+        }
     }
 }

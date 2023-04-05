@@ -84,6 +84,7 @@ namespace RBACV2.API.Settings
         public void SetupMiddlewares(WebApplication app)
         {
             app.UseMiddleware<UnauthorizedMiddleware>();
+            app.UseMiddleware<ForbiddenMiddleware>();
             app.UseCors("DevPolicy");
 
         }

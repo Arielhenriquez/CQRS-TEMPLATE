@@ -9,5 +9,6 @@
         public const string ExceptionMessage = "An error Has occurred check the Exception Message";
         public const string NotFoundMessage = "An error Has occurred check the Message";
         public const string UnauthorizedMessage = "Unauthorized";
+        public const string ForbiddenMessage = "Forbidden";
     }
 }
