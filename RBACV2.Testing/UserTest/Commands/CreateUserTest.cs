@@ -2,10 +2,10 @@
 using RBACV2.Application.UsersEntity.Dtos;
 using RBACV2.Application.UsersEntity.Handlers.Commands;
 using RBACV2.Application.UsersEntity.Mappings;
-using RBACV2.Testing.UserTest.FakeData;
-using RBACV2.Testing.UserTest.Mocks;
+using RBACV2.Test.UserTest.FakeData;
+using RBACV2.Test.UserTest.Mocks;
 
-namespace RBACV2.Testing.UserTest.Commands
+namespace RBACV2.Test.UserTest.Commands
 {
     public class CreateUserTest
     {

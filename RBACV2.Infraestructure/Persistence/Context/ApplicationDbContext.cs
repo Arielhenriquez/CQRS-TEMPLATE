@@ -10,11 +10,19 @@ namespace RBACV2.Infrastructure.Persistence.Context
     public interface IApplicationDbContext : IDbContext { }
     public class ApplicationDbContext : BaseDbContext, IApplicationDbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
-            IHttpContextAccessor context) : base(options, context)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
+            ) : base(options)
         {
 
         }
+
+        //UNCOMMENT WHEN AUTH IS READY
+        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options,
+        //  IHttpContextAccessor context) : base(options, context)
+        //{
+
+        //}
+
 
         public DbSet<Applications> Applications { get; set; }
         public DbSet<Permissions> Permissions { get; set; }

@@ -3,9 +3,9 @@ using RBACV2.Application.UsersEntity.Dtos;
 using RBACV2.Application.UsersEntity.Handlers.Queries;
 using RBACV2.Application.UsersEntity.Mappings;
 using RBACV2.Application.UsersEntity.Queries;
-using RBACV2.Testing.UserTest.Mocks;
+using RBACV2.Test.UserTest.Mocks;
 
-namespace RBACV2.Testing.UserTest.Queries
+namespace RBACV2.Test.UserTest.Queries
 {
     public class GetUserByIdTest
     {

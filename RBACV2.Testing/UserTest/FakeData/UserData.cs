@@ -3,7 +3,7 @@ using RBACV2.Application.UsersEntity.Commands;
 using RBACV2.Application.UsersEntity.Handlers.Commands;
 using RBACV2.Domain.Entities.UserEntity;
 
-namespace RBACV2.Testing.UserTest.FakeData
+namespace RBACV2.Test.UserTest.FakeData
 {
     public static class UserData
     {
@@ -25,7 +25,7 @@ namespace RBACV2.Testing.UserTest.FakeData
 
         #region Commands
         public static CreateUserCommand CreateCommand { get; } = new Faker<CreateUserCommand>()
-            .RuleFor(u => u.Id, f => Guid.Empty)
+            .RuleFor(u => u.Id, f => f.Random.Guid())
             .RuleFor(u => u.FirstName, f => f.Name.FirstName())
             .RuleFor(u => u.FullName, f => f.Name.FullName())
             .RuleFor(u => u.UserName, f => f.Internet.UserName())

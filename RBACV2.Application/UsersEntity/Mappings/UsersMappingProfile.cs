@@ -12,7 +12,7 @@ namespace RBACV2.Application.UsersEntity.Mappings
         {
             CreateMap<UserPasswordProfile, PasswordProfile>().ReverseMap();
             CreateMap<GetUsersDto, Users>().ReverseMap();
-            // CreateMap<GetUserByIdDto, Users>().ReverseMap();
+            CreateMap<GetUserByIdDto, Users>().ReverseMap();
             CreateMap<Users, UserResponseDto>().ReverseMap();
             CreateMap<CreateUserCommand, Users>().ReverseMap();
             CreateMap<UpdateUserCommand, Users>().ReverseMap();

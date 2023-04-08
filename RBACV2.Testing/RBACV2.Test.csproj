@@ -32,6 +32,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\RBACV2.Application\RBACV2.Application.csproj" />
+		<ProjectReference Include="..\RBACV2.Infraestructure\RBACV2.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

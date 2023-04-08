@@ -18,14 +18,15 @@ namespace RBACV2.Infrastructure.Persistence.Context
     {
         protected readonly IHttpContextAccessor _context;
 
-        protected BaseDbContext(DbContextOptions options, IHttpContextAccessor context) : base(options)
+        protected BaseDbContext(DbContextOptions options) : base(options)
         {
-            _context = context;
+           // _context = context;
         }
 
         private void SetAuditEntities()
         {
-            var email = _context?.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value ?? "Anonymous";
+           // string email = _context?.HttpContext?.User?.FindFirst(ClaimTypes.Email)?.Value ?? "Anonymous";
+            string email = "Test";
 
             foreach (var entry in ChangeTracker.Entries<IBase>())
             {

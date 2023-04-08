@@ -21,11 +21,6 @@ namespace RBACV2.Infrastructure
             services.AddDbContext<ApplicationDbContext>(options
                  => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            //USE WHEN KEY VAULT IS AVAILABLE
-            //string keyVault = configuration["KeyVault:ConnectionValue"]!;
-            //services.AddDbContext<ApplicationDbContext>(options
-            //             => options.UseSqlServer(configuration[keyVault]));
-
             return services;
         }
     }
