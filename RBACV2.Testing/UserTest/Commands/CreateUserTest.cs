@@ -18,7 +18,7 @@ namespace RBACV2.Test.UserTest.Commands
             });
 
             var mapper = new Mapper(config);
-            var command = UserData.CreateCommand;
+            var command = UserData.CreateUserCommand;
             var mockedRepository = MockedUserRepository.CreateUserCommandMock();
 
             var handler = new CreateUserCommandHandler(mockedRepository.Object, mapper);

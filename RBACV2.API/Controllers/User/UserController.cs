@@ -10,7 +10,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace RBACV2.API.Controllers.User
 {
-    [Route("api/user")]
+    [Route("api/users")]
     [ApiController]
     public class UserController : BaseController
     {

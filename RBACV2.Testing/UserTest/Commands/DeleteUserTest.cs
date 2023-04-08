@@ -18,7 +18,7 @@ namespace RBACV2.Test.UserTest.Commands
                 cfg.AddProfile<UsersMappingProfile>();
             });
 
-            var command = UserData.DeleteCommand;
+            var command = UserData.DeleteUserCommand;
 
             var mapper = new Mapper(config);
             var mockedRepository = MockedUserRepository.DeleteUserCommandMock();

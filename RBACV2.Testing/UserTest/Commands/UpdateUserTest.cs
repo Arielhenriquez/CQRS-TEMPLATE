@@ -19,7 +19,7 @@ namespace RBACV2.Test.UserTest.Commands
             });
 
             var mapper = new Mapper(config);
-            var command = UserData.UpdateCommand;
+            var command = UserData.UpdateUserCommand;
 
             var mockedRepository = MockedUserRepository.UpdateUserCommandMock();
 

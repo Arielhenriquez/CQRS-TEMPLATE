@@ -1,13 +1,4 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using RBACV2.Application;
-using RBACV2.Application.Common.Interfaces.Abstract;
-using RBACV2.Application.Common.Interfaces.Repositories;
-using RBACV2.Infrastructure.Persistence.Context;
-using RBACV2.Infrastructure.Persistence.Repositories;
-using RBACV2.Infrastructure.Services.GraphProviders;
-using RBACV2.Test.UserTest.FakeData;
+﻿using RBACV2.Test.UserTest.FakeData;
 
 namespace RBACV2.Test.UserTest.IntegrationTests
 {
@@ -16,7 +7,7 @@ namespace RBACV2.Test.UserTest.IntegrationTests
         [Fact]
         public async Task ShouldAddUserToDatabase()
         {
-            var user = UserData.CreateCommand;
+            var user = UserData.CreateUserCommand;
             await _mediator!.Send(user, CancellationToken.None);
 
             var savedUser = await _context.Users.FindAsync(user.Id);

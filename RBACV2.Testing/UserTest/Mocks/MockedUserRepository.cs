@@ -19,7 +19,7 @@ namespace RBACV2.Test.UserTest.Mocks
             }
         }
 
-        private static MockService Mocks = new(UserData.Users.AsQueryable().BuildMock());
+        private static MockService Mocks = new(UserData.ListUsers.AsQueryable().BuildMock());
 
         public static Mock<IUserRepository> GetUsersMockQuery()
         {
@@ -32,10 +32,10 @@ namespace RBACV2.Test.UserTest.Mocks
             Guid guid = Guid.Empty;
 
             Mocks.mockRepository.Setup(x => x.Get(guid))
-             .Returns(Task.FromResult(UserData.Users.FirstOrDefault(find => find.Id == guid))!);
+             .Returns(Task.FromResult(UserData.ListUsers.FirstOrDefault(find => find.Id == guid))!);
 
             Mocks.mockRepository.Setup(x => x.Query())
-                .Returns(UserData.Users.AsQueryable().BuildMock());
+                .Returns(UserData.ListUsers.AsQueryable().BuildMock());
 
             return Mocks.mockRepository;
         }
@@ -43,22 +43,22 @@ namespace RBACV2.Test.UserTest.Mocks
         public static Mock<IUserRepository> CreateUserCommandMock()
         {
             Mocks.mockRepository.Setup(x => x.Add(It.IsAny<Users>()))
-                .Callback((Users user) => UserData.CreateUsers.Add(user))
-                .Returns(Task.FromResult(UserData.CreateUsers.LastOrDefault())!);
+                .Callback((Users user) => UserData.CreateListUsers.Add(user))
+                .Returns(Task.FromResult(UserData.CreateListUsers.LastOrDefault())!);
 
             Mocks.mockRepository.Setup(x => x.Query()).Returns(Mocks.queryableEntity);
             return Mocks.mockRepository;
         }
         public static Mock<IUserRepository> UpdateUserCommandMock()
         {
-            var queryableUsersService = UserData.CreateUsers.AsQueryable().BuildMock();
+            var queryableUsersService = UserData.CreateListUsers.AsQueryable().BuildMock();
             Mocks.mockRepository.Setup(x => x.Update(It.IsAny<Users>()))
                 .Callback((Users entity) =>
                 {
-                    var user = UserData.CreateUsers.FirstOrDefault(find => find.Id == entity.Id);
+                    var user = UserData.CreateListUsers.FirstOrDefault(find => find.Id == entity.Id);
                     user!.FullName = entity.FullName;
                 })
-                .Returns(Task.FromResult(UserData.CreateUsers.LastOrDefault())!);
+                .Returns(Task.FromResult(UserData.CreateListUsers.LastOrDefault())!);
 
             Mocks.mockRepository.Setup(x => x.Query()).Returns(queryableUsersService);
             return Mocks.mockRepository;
@@ -68,10 +68,10 @@ namespace RBACV2.Test.UserTest.Mocks
         {
             Guid guid = Guid.Empty;
             Mocks.mockRepository.Setup(x => x.Delete(guid))
-            .Returns(Task.FromResult(UserData.Users.FirstOrDefault(find => find.Id == guid))!);
+            .Returns(Task.FromResult(UserData.ListUsers.FirstOrDefault(find => find.Id == guid))!);
 
             Mocks.mockRepository.Setup(x => x.Query())
-                .Returns(UserData.Users.AsQueryable().BuildMock());
+                .Returns(UserData.ListUsers.AsQueryable().BuildMock());
 
             return Mocks.mockRepository;
         }
