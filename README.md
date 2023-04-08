@@ -10,7 +10,7 @@ Template usando mediator con CQRS la aplicacion tiene como finalidad manejar aut
 
 
 ### Tabla de contenido
-- [Unit SSO](#micro-payments)
+- [CQRS TEMPLATE]
     - [Tabla de contenido](#tabla-de-contenido)
     - [Especificaciones:](#especificaciones)
     - [Composición:](#composición)
@@ -40,19 +40,19 @@ Template usando mediator con CQRS la aplicacion tiene como finalidad manejar aut
 - [Domain Driven Design](https://learn.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/ddd-oriented-microservice)
 
 ### Composición:
-1. 📂Unit.Api
+1. 📂RBACV2.Api
    1. ┣ 📂Controllers
    2. ┣ 📂Settings
    3. ┣ Program.cs
-2. 📂Unit.Aplication
+2. 📂RBACV2.Application
     1. ┣ 📂AzureADApp
     2. ┣ 📂Users
     3. ┣ 📂Common
     4. ┣ 📂Organization
     5. ┣ IoC.cs
-3. 📂Unit.Domain
+3. 📂RBACV2.Domain
     1. ┣ 📂Common
-4. 📂Unit.Infrastructure
+4. 📂RBACV2.Infrastructure
     1. ┣ 📂Context
     2. ┣ 📂Migration
    3. ┣ 📂Policies
@@ -60,11 +60,11 @@ Template usando mediator con CQRS la aplicacion tiene como finalidad manejar aut
    5. ┣ 📂Utils
    6. ┣ IoC.cs
   
-- `Unit.Api`: es el proyecto principal del microservicio.
+- `RBACV2.Api`: es el proyecto principal del microservicio.
 - `Controllers`: es una carpeta que contiene los controladores de la aplicación.
-  `Unit.Aplication`: es el proyecto con los comandos y queries del microservicio.
-- `Unit.Domain`: es el proyecto principal del microservicio.
-- `Unit.Infrastucture`: es una carpeta que contiene los hubs (sockets con signalR) de la aplicación.
+  `RBACV2.Aplication`: es el proyecto con los comandos y queries del microservicio.
+- `RBACV2.Domain`: es el proyecto principal del microservicio.
+- `RBACV2.Infrastucture`: es una carpeta que contiene los hubs (sockets con signalR) de la aplicación.
 - `Migrations`: es una carpeta que contiene las migraciones de la aplicación.
 - `Context`: es una carpeta que contiene los Contextos de la base de datos.
 - `Policies`: es una carpeta que contiene los modelos de la aplicación.
@@ -104,10 +104,11 @@ _Favor revisar documentación en swagger al momento de correr la api para mejor 
 | `/api/azure-ad-permissions-to-organizations`                                          | `POST`   | 
 | `/api/azure-ad-permissions-to-organizations/{id}`                                     | `DELETE` | 
 | `/api/azure-ad-permissions-to-organizations/{organizationId}`                         | `GET`    | 
-| `/api/azure-ad-users`                                                                 | `GET`    | 
-| `/api/azure-ad-users`                                                                 | `POST`   | 
-| `/api/azure-ad-users/{id}`                                                            | `PUT`    | 
-| `/api/azure-ad-users/{id}`                                                            | `DELETE` |
+| `/api/users`                                                                          | `GET`    |
+| `/api/users`                                                                          | `POST`   | 
+| `/api/users/{id}`                                                                     | `GET`    |  
+| `/api/users/{id}`                                                                     | `PUT`    | 
+| `/api/users/{id}`                                                                     | `DELETE` |
 | `/api/azure-ad-users/user-role/{roleId}`                                              | `Get`    |
 | `/api/azure-ad-users/photo/{userOid}`                                                 | `Get`    |
 | `/api/azure-ad-users/organization/{organizationId}`                                   | `Get`    |
@@ -118,13 +119,6 @@ _Favor revisar documentación en swagger al momento de correr la api para mejor 
 | `/api/azure-ad-users-permissions`                                                     | `DELETE` |
 | `/api/azure-ad-users-permissions`                                                     | `POST`   |
 | `/api/organization/{organizationId}`                                                  | `GET`    | 
-| `/api/organization`                                                                   | `GET`    | 
-| `/api/organization`                                                                   | `POST`   | 
-| `/api/organization/overview/{organizationId}`                                         | `GET`    | 
-| `/api/organization/admins`                                                            | `POST`   | 
-| `/api/organization/remove/admins`                                                     | `PUT`   | 
-| `/api/organization/{id}`                                                              | `PUT`    | 
-| `/api/organization/{id}`                                                              | `DELETE` |
 | `/api/permissions-to-roles`                                                           | `GET`    |
 | `/api/permissions-to-roles`                                                           | `POST`   | 
 | `/api/permissions-to-roles/{id}`                                                      | `GET`    |
@@ -194,7 +188,7 @@ _Favor revisar documentación en swagger al momento de correr la api para mejor 
 }
 ```
 
-##### AzureADUserDto
+##### UserDto
 ```json
 {
   "firstName": "string",
