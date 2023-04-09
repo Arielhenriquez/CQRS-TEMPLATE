@@ -15,6 +15,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="7.0.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.4" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.2" />
 		<PackageReference Include="MockQueryable.Moq" Version="7.0.0" />
@@ -31,6 +32,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\RBACV2.API\RBACV2.API.csproj" />
 		<ProjectReference Include="..\RBACV2.Application\RBACV2.Application.csproj" />
 		<ProjectReference Include="..\RBACV2.Infraestructure\RBACV2.Infrastructure.csproj" />
 	</ItemGroup>

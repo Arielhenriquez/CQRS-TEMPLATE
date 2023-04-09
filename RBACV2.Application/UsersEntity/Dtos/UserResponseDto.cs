@@ -11,7 +11,7 @@ namespace RBACV2.Application.UsersEntity.Dtos
         public string? UserName { get; set; }
         public string? FullEmail { get; set; }
         [DefaultValue(false)]
-        public bool? IsOrganizationAdmin { get; set; }
+        public bool IsOrganizationAdmin { get; set; }
         [DefaultValue(true)]
         public bool? IsEnabled { get; set; }
         public UserPasswordProfile? PasswordProfile { get; set; }

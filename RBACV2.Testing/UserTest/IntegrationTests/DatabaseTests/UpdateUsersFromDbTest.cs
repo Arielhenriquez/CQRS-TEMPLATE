@@ -22,8 +22,7 @@ namespace RBACV2.Test.UserTest.IntegrationTests.DatabaseTests
             Assert.Equal(user.Id, updatedUser.Id);
             Assert.NotEqual(updatedUser.FirstName, savedUser.FirstName);
             Assert.NotEqual(updatedUser.FullName, savedUser.FullName);
-            Assert.Equal(updatedUser.IsEnabled, savedUser.IsEnabled);
-
+            Assert.Equal(user.IsEnabled, savedUser.IsEnabled);
         }
     }
 
