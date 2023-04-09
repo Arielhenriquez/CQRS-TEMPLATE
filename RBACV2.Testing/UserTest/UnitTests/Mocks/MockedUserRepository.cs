@@ -4,7 +4,7 @@ using RBACV2.Application.Common.Interfaces.Repositories;
 using RBACV2.Domain.Entities.UserEntity;
 using RBACV2.Test.UserTest.FakeData;
 
-namespace RBACV2.Test.UserTest.Mocks
+namespace RBACV2.Test.UserTest.UnitTests.Mocks
 {
     public class MockedUserRepository
     {

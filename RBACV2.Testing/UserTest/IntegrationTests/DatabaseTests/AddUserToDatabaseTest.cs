@@ -1,8 +1,10 @@
 ﻿using RBACV2.Test.UserTest.FakeData;
+using RBACV2.Test.UserTest.IntegrationTests.Fixtures;
 
-namespace RBACV2.Test.UserTest.IntegrationTests
+namespace RBACV2.Test.UserTest.IntegrationTests.DatabaseTests
 {
-    public class AddUserToDatabase : Fixtures
+    [Collection("Database collection")]
+    public class AddUserToDatabaseTest : DatabaseFixture
     {
         [Fact]
         public async Task ShouldAddUserToDatabase()

@@ -1,11 +1,13 @@
 ﻿using RBACV2.Application.Common.PaginationQuery;
 using RBACV2.Application.UsersEntity.Queries;
 using RBACV2.Test.UserTest.FakeData;
+using RBACV2.Test.UserTest.IntegrationTests.Fixtures;
 using Xunit;
 
-namespace RBACV2.Test.UserTest.IntegrationTests
+namespace RBACV2.Test.UserTest.IntegrationTests.DatabaseTests
 {
-    public class GetUsersFromTheDatabase : Fixtures
+    [Collection("Database collection")]
+    public class GetUsersFromTheDatabaseTest : DatabaseFixture
     {
         [Fact]
         public async Task ShouldGetUsersFromTheDatabase()
@@ -19,21 +21,8 @@ namespace RBACV2.Test.UserTest.IntegrationTests
             var query = new GetFilteredUsersQuery(paginationQuery);
             var result = await _mediator!.Send(query, CancellationToken.None);
 
-            // Assert
             Assert.NotNull(result);
             Assert.Equal(users.Count, result.TotalRecords);
-
-            //foreach (var user in users)
-            //{
-            //    Assert.NotNull(savedUser);
-            //    Assert.Equal(user.Id, savedUser.Id);
-            //    Assert.Equal(user.FirstName, savedUser.FirstName);
-            //    Assert.Equal(user.FullName, savedUser.FullName);
-            //    Assert.Equal(user.UserName, savedUser.UserName);
-            //    Assert.Equal(user.IsEnabled, savedUser.IsEnabled);
-            //    Assert.Equal(user.ApplicationId, savedUser.ApplicationId);
-            //    Assert.Equal(user.RoleId, savedUser.RoleId);
-            //}
         }
     }
 }

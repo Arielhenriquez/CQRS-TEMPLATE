@@ -4,9 +4,9 @@ using RBACV2.Application.UsersEntity.Handlers.Commands;
 using RBACV2.Application.UsersEntity.Mappings;
 using RBACV2.Domain.Entities.UserEntity;
 using RBACV2.Test.UserTest.FakeData;
-using RBACV2.Test.UserTest.Mocks;
+using RBACV2.Test.UserTest.UnitTests.Mocks;
 
-namespace RBACV2.Test.UserTest.Commands
+namespace RBACV2.Test.UserTest.UnitTests.Commands
 {
     public class DeleteUserTest
     {

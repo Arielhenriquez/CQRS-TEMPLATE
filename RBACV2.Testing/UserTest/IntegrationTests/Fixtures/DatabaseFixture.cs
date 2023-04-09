@@ -8,14 +8,14 @@ using RBACV2.Infrastructure.Persistence.Context;
 using RBACV2.Infrastructure.Persistence.Repositories;
 using RBACV2.Infrastructure.Services.GraphProviders;
 
-namespace RBACV2.Test.UserTest.IntegrationTests
+namespace RBACV2.Test.UserTest.IntegrationTests.Fixtures
 {
-    public class Fixtures : IDisposable
+    public class DatabaseFixture : IDisposable
     {
         protected readonly ApplicationDbContext _context;
         protected readonly IMediator _mediator;
 
-        public Fixtures()
+        public DatabaseFixture()
         {
             var services = new ServiceCollection()
                 .AddApplication()
@@ -35,6 +35,7 @@ namespace RBACV2.Test.UserTest.IntegrationTests
 
         public void Dispose()
         {
+            _context.Database.EnsureDeleted();
             _context.Dispose();
         }
     }
