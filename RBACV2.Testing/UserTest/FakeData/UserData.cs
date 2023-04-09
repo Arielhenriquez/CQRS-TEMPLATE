@@ -6,19 +6,33 @@ namespace RBACV2.Test.UserTest.FakeData
 {
     public static class UserData
     {
+        public static Users SingleUser { get; } = new Faker<Users>()
+      .RuleFor(u => u.Id, f => Guid.Empty)
+        .RuleFor(u => u.FirstName, f => f.Name.FirstName())
+        .RuleFor(u => u.FullName, f => f.Name.FullName())
+        .RuleFor(u => u.UserName, f => f.Internet.UserName())
+        .RuleFor(u => u.IsEnabled, f => f.Random.Bool())
+        .RuleFor(u => u.ApplicationId, f => f.Random.Guid())
+        .RuleFor(u => u.RoleId, f => f.Random.Guid())
+        .Generate();
+
         public static List<Users> ListUsers { get; } = new Faker<Users>()
          .RuleFor(u => u.Id, f => Guid.Empty)
-         .RuleFor(u => u.UserName, f => f.Internet.UserName())
+         .RuleFor(u => u.FirstName, f => f.Name.FirstName())
          .RuleFor(u => u.FullName, f => f.Name.FullName())
-         .RuleFor(u => u.FullEmail, f => f.Internet.Email())
-         .RuleFor(u => u.RoleId, f => Guid.Empty)
+         .RuleFor(u => u.UserName, f => f.Internet.UserName())
+         .RuleFor(u => u.IsEnabled, f => f.Random.Bool())
+         .RuleFor(u => u.ApplicationId, f => f.Random.Guid())
+         .RuleFor(u => u.RoleId, f => f.Random.Guid())
          .Generate(10);
 
         public static List<Users> CreateListUsers { get; } = new Faker<Users>()
         .RuleFor(u => u.Id, f => Guid.Empty)
-        .RuleFor(u => u.UserName, f => f.Internet.UserName())
+        .RuleFor(u => u.FirstName, f => f.Name.FirstName())
         .RuleFor(u => u.FullName, f => f.Name.FullName())
-        .RuleFor(u => u.FullEmail, f => f.Internet.Email())
+        .RuleFor(u => u.UserName, f => f.Internet.UserName())
+        .RuleFor(u => u.IsEnabled, f => f.Random.Bool())
+        .RuleFor(u => u.ApplicationId, f => f.Random.Guid())
         .RuleFor(u => u.RoleId, f => Guid.Empty)
         .Generate(10);
 
@@ -46,6 +60,16 @@ namespace RBACV2.Test.UserTest.FakeData
             .RuleFor(u => u.IsEnabled, f => f.Random.Bool())
             .Generate();
 
+        public static UpdateUserCommand GetUpdateUserCommand(Guid userId)
+        {
+            return new Faker<UpdateUserCommand>()
+                .RuleFor(u => u.Id, f => userId)
+                .RuleFor(u => u.FirstName, f => f.Name.FirstName())
+                .RuleFor(u => u.FullName, f => f.Name.FullName())
+                .RuleFor(u => u.IsOrganizationAdmin, f => f.Random.Bool())
+                .RuleFor(u => u.IsEnabled, f => f.Random.Bool())
+                .Generate();
+        }
 
         public static DeleteUserCommand DeleteUserCommand { get; } = new Faker<DeleteUserCommand>()
         .CustomInstantiator(f => new DeleteUserCommand(Guid.Empty))

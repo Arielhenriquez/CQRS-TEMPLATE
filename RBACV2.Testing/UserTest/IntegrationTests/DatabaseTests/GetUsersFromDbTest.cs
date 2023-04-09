@@ -7,7 +7,7 @@ using Xunit;
 namespace RBACV2.Test.UserTest.IntegrationTests.DatabaseTests
 {
     [Collection("Database collection")]
-    public class GetUsersFromTheDatabaseTest : DatabaseFixture
+    public class GetUsersFromDbTest : DatabaseFixture
     {
         [Fact]
         public async Task ShouldGetUsersFromTheDatabase()

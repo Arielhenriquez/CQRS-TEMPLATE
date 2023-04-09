@@ -2,7 +2,6 @@
 using RBACV2.Application.UsersEntity.Dtos;
 using RBACV2.Application.UsersEntity.Handlers.Commands;
 using RBACV2.Application.UsersEntity.Mappings;
-using RBACV2.Domain.Entities.UserEntity;
 using RBACV2.Test.UserTest.FakeData;
 using RBACV2.Test.UserTest.UnitTests.Mocks;
 

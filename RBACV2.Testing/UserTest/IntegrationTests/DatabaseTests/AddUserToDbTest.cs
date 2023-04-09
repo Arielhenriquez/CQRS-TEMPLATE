@@ -4,7 +4,7 @@ using RBACV2.Test.UserTest.IntegrationTests.Fixtures;
 namespace RBACV2.Test.UserTest.IntegrationTests.DatabaseTests
 {
     [Collection("Database collection")]
-    public class AddUserToDatabaseTest : DatabaseFixture
+    public class AddUserToDbTest : DatabaseFixture
     {
         [Fact]
         public async Task ShouldAddUserToDatabase()
