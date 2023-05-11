@@ -45,7 +45,7 @@ namespace RBACV2.Infrastructure.Persistence.Repositories
 
         public virtual IQueryable<TEntity> Query()
         {
-            return _db.AsQueryable();
+            return _db.AsQueryable().OrderByDescending(c => c.CreatedDate);
         }
         public virtual async Task<TEntity> Get(Guid id)
         {

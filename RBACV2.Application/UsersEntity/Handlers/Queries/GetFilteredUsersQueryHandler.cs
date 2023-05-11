@@ -25,8 +25,7 @@ namespace RBACV2.Application.UsersEntity.Handlers.Queries
         {
             var query = _userRepository.Query()
                .Filter(request.Search!, cancellationToken)
-               .Include(x => x.Role)
-               .OrderByDescending(x => x.CreatedDate);
+               .Include(x => x.Role);
 
             var queryMapped = query
                .ProjectTo<GetUsersDto>(_mapper.ConfigurationProvider);
